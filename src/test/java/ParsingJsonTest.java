@@ -12,7 +12,7 @@ public class ParsingJsonTest {
     @Test
     void parsingJsonTest() throws Exception {
         ObjectMapper om = new ObjectMapper();
-        try (InputStream is = cl.getResourceAsStream("TestFile/Desctop.json");
+        try (InputStream is = cl.getResourceAsStream("testFile/Desctop.json");
              InputStreamReader isr = new InputStreamReader(is)) {
             Desctop des = om.readValue(isr, Desctop.class);
             Assertions.assertEquals("MSI z690", des.computerCase.motherboard);

@@ -14,22 +14,23 @@ public class ParsingZIPTest {
     private ClassLoader cl = ParsingZIPTest.class.getClassLoader();
 
     @Test
-    void ParsingZipForPDF() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("TestFile/HW_10.zip");
+    void parsingZipForPDF() throws Exception {
+        try (InputStream is = cl.getResourceAsStream("testFile/HW_10.zip");
              ZipInputStream zs = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zs.getNextEntry()) != null) {
                 if (entry.getName().equals("HW_10.pdf")) {
                     PDF pdfFile = new PDF(zs);
-                    Assertions.assertEquals("Hello World! My name is Qa Engineer", pdfFile.text);
+                    Assertions.assertEquals("Hello World! My name is Qa Engineer",
+                            pdfFile.text.replaceFirst("\n","").replaceFirst("\r",""));
                 }
             }
         }
     }
 
     @Test
-    void ParsingZipForCSV() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("TestFile/HW_10.zip");
+    void parsingZipForCSV() throws Exception {
+        try (InputStream is = cl.getResourceAsStream("testFile/HW_10.zip");
              ZipInputStream zs = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zs.getNextEntry()) != null) {
@@ -44,14 +45,15 @@ public class ParsingZIPTest {
     }
 
     @Test
-    void ParsingZipForXLSX() throws Exception {
-        try (InputStream is = cl.getResourceAsStream("TestFile/HW_10.zip");
+    void parsingZipForXLSX() throws Exception {
+        try (InputStream is = cl.getResourceAsStream("testFile/HW_10.zip");
              ZipInputStream zs = new ZipInputStream(is)) {
             ZipEntry entry;
             while ((entry = zs.getNextEntry()) != null) {
                 if (entry.getName().equals("HW_10.xlsx")) {
                     XLS xlsFile = new XLS(zs);
-                    Assertions.assertEquals(xlsFile.excel.getSheetAt(0).getRow(0).getCell(1).getStringCellValue(), "Hello World! My name is Qa Engineer");
+                    Assertions.assertEquals(xlsFile.excel.getSheetAt(0).getRow(0).getCell(1)
+                            .getStringCellValue(), "Hello World! My name is Qa Engineer");
                 }
             }
         }
