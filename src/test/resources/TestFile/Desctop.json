@@ -1,0 +1,14 @@
+{
+  "computerCase": {
+    "motherboard": "MSI z690",
+    "cpu": "Intel i5",
+    "ram": 32,
+    "gpu": "rtx 4070ti",
+    "cpuCooling": "DeepCool",
+    "caseCooling": [
+      "Cooler1",
+      "Cooler2",
+      "Cooler3"
+    ]
+  }
+}
